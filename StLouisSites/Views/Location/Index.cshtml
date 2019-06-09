@@ -1,0 +1,48 @@
+﻿@model List<StLouisSites.Models.Location>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>St. Louis Site Locations:</h1>
+
+<div>
+
+    <hr />
+    <table border="1" cellpadding="10">
+        <tr>
+            <th bgcolor="#cce6ff">Location</th>
+            <th bgcolor="#cce6ff">Description</th>
+            <th bgcolor="#cce6ff">Hours Of Operation</th>
+        </tr>
+        @foreach (var location in Model)
+        {
+            <tr>
+                <td>@location.Name</td>
+                <td>@location.Description</td>
+                <td>@location.HoursOfOperation</td>
+            </tr>
+        }
+
+    </table>
+
+    @*<dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>*@
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>*@
+</div>

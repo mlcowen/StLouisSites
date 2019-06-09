@@ -21,18 +21,19 @@ namespace StLouisSites.Controllers
         public IActionResult Index()
         {
             List<Location> locations = context.Locations.ToList();
-            return View();
+            return View(locations);
         }
 
         [HttpGet]
         public IActionResult Create()
-        {
+        {   
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Location location)
         {
+
             context.Add(location);
             context.SaveChanges();
             //If you add and don't save changes, then it won't save to the database. 

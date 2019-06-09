@@ -194,6 +194,8 @@ namespace StLouisSites.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Description");
+
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
