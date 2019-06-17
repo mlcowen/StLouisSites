@@ -7,18 +7,18 @@ namespace StLouisSites.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Description",
-                table: "Locations",
-                nullable: true);
+               name: "HoursOfOperation",
+               table: "Locations",
+               nullable: true);
 
-            
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Description",
-                table: "Locations");
+               name: "HoursOfOperation",
+               table: "Locations");
 
         }
     }
