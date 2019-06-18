@@ -16,6 +16,12 @@ namespace StLouisSites.Controllers
             this.context = context;
         }
 
+        public IActionResult Index()
+        {
+            List<Location> locations = context.Locations.ToList();
+            return View(locations);
+        }
+
         [HttpGet]
         public IActionResult Create(int locationId)
         {
