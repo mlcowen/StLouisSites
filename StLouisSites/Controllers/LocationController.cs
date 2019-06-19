@@ -42,9 +42,17 @@ namespace StLouisSites.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int Id)
+        public IActionResult Details(int id)
         {
-            return View();
+            
+            List<Location> locations = context.Locations.Where(a => a.Id == id).ToList();
+
+            //var locations = context.Locations.Where(a => a.Id == id).Single();
+            ViewBag.location = locations;
+            return View(locations);
         }
+
+
+
     }
 }

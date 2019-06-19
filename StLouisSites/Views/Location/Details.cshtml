@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@*@model StLouisSites.ViewModels.Locations.LocationDetailViewModel*@
+@model List<StLouisSites.Models.Location>
+
 @{
+    ViewData["Title"] = "Details";
+}
+
+@*<h1>@ViewBag.location.Name</h1>*@
+
+<h1> @Html.DisplayNameFor(Model.Name)</h1>
+<p> @Html.DisplayNameFor(model => model.HoursOfOperation)</p>
+<p> @Html.DisplayNameFor(model => model.Description)</p>
+
+<hr />
+
+<h2>Reviews</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        @*@foreach (Review in Model.LocationReviews)
+            {
+                <dl>
+                    <dt>@Review.ReviewHeadline</dt>
+                    <dd>
+                        <div>@Review.Rating</div>
+                        <div>@Review.Review</div>
+                    </dd>
+                </dl>
+            }*@
+
+    </div>
+</div>
+
+<div>
+    @*<a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate this Location</a>
+        <a asp-controller="Location" asp-action="Index">Back to List</a>*@
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

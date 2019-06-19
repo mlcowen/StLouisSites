@@ -15,20 +15,29 @@
             <th bgcolor="#cce6ff">Location</th>
             <th width="40%" bgcolor="#cce6ff">Description</th>
             <th bgcolor="#cce6ff">Hours Of Operation</th>
+            <th bgcolor="#cce6ff">Average Rating</th>
             <th bgcolor="#cce6ff"></th>
         </tr>
         @foreach (var location in Model)
         {
-            <tr>
-                <td>@location.Name</td>
-                <td>@location.Description</td>
-                <td>@location.HoursOfOperation</td>
-                <td>
-                    <a asp-controller="Location" asp-action="Details" asp-route-id="@location.Id">View</a> |
-                    <a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate</a>
-                </td>
-                @*<td>@location.AverageRating</td>*@
-            </tr>
+        <tr>
+            <td>@location.Name</td>
+            <td>@location.Description</td>
+            <td>@location.HoursOfOperation</td>
+            @*@if (location.Ratings.Count > 0)
+            {
+                <td>@location.Ratings.Average()</td>
+            }
+            else
+            {
+                <td>none</td>
+            }*@
+            <td>
+                <a asp-controller="Location" asp-action="Details" asp-route-id="@location.Id">View</a> |
+                <a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate</a>
+            </td>
+            @*<td>@location.AverageRating</td>*@
+        </tr>
         }
 
     </table>
