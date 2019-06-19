@@ -1,4 +1,4 @@
-﻿@model StLouisSites.Models.LocationRating
+@model StLouisSites.Models.LocationReview
 
 @{
     ViewData["Title"] = "Index";
@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -52,7 +52,7 @@
                     @Html.ActionLink("Rate", "Details", "LocationRating", new { locationId = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
-            </tr>
+            </tr>*@
         }
-    </tbody>
+    @*</tbody>*@
 </table>

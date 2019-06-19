@@ -30,6 +30,7 @@ namespace StLouisSites.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Create(Location location)
         {
@@ -38,6 +39,12 @@ namespace StLouisSites.Controllers
             context.SaveChanges();
             //If you add and don't save changes, then it won't save to the database. 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Details(int Id)
+        {
+            return View();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace StLouisSites.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Location> Locations { get; set; }
+        public DbSet<LocationReview> LocationReviews { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

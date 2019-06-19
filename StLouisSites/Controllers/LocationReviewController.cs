@@ -4,14 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using StLouisSites.Data;
 using Microsoft.AspNetCore.Mvc;
+using StLouisSites.Models;
 
 namespace StLouisSites.Controllers
 {
-    public class LocationRatingController : Controller
+    public class LocationReviewController : Controller
     {
         private ApplicationDbContext context;
 
-        public LocationRatingController(ApplicationDbContext context)
+        public LocationReviewController(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -28,14 +29,14 @@ namespace StLouisSites.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(int locationId, LocationRatingCreateViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
+        //    [HttpPost]
+        //    public IActionResult Create(int locationId, LocationReviewCreateViewModel model)
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return View(model);
 
-            model.Persist(context);
-            return RedirectToAction(controllerName: "Location", actionName: "Index");
-        }
+        //        model.Persist(context);
+        //        return RedirectToAction(controllerName: "Location", actionName: "Index");
+        //    }
     }
 }
