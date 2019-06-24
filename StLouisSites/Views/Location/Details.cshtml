@@ -1,37 +1,42 @@
-﻿@*@model StLouisSites.ViewModels.Locations.LocationDetailViewModel*@
-@model List<StLouisSites.Models.Location>
+﻿@model IList<StLouisSites.Models.Location>
 
 @{
     ViewData["Title"] = "Details";
 }
 
-@*<h1>@ViewBag.location.Name</h1>*@
 
-<h1> @Html.DisplayNameFor(Model.Name)</h1>
-<p> @Html.DisplayNameFor(model => model.HoursOfOperation)</p>
-<p> @Html.DisplayNameFor(model => model.Description)</p>
+@foreach (var location in Model)
+{
+    <h1>@location.Name</h1>
+    <p><b>Hour of Operations:</b><br />
+        @location.HoursOfOperation
+    </p>
+    <h2>Description</h2>
+    <p>@location.Description</p>
 
-<hr />
+    <hr />
 
-<h2>Reviews</h2>
+    <h3>Reviews</h3>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <hr />
 
-        @*@foreach (Review in Model.LocationReviews)
+    <div class="row">
+        <div class="col-md-4">
+
+            @foreach (var review in location.LocationReviews)
             {
                 <dl>
-                    <dt>@Review.ReviewHeadline</dt>
+                    <dt>@review.ReviewHeadline</dt>
                     <dd>
-                        <div>@Review.Rating</div>
-                        <div>@Review.Review</div>
+                        <div>@review.Rating</div>
+                        <div>@review.Review</div>
                     </dd>
                 </dl>
-            }*@
+            }
 
+        </div>
     </div>
-</div>
+}
 
 <div>
     @*<a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate this Location</a>

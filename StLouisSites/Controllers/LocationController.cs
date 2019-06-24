@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StLouisSites.Data;
 using StLouisSites.Models;
+using StLouisSites.ViewModels.Locations;
 
 namespace StLouisSites.Controllers
 {
@@ -20,7 +22,12 @@ namespace StLouisSites.Controllers
 
         public IActionResult Index()
         {
-            List<Location> locations = context.Locations.ToList();
+            //List<Location> locations = context.Locations.ToList();
+            // where tells the query to get the row that matches the id of the location. This pulls data from the locationReview table 
+            //List<Location> locations = context.Locations.Include(a => a.LocationReviews).ToList();
+           
+            List<LocationListItemViewModel> locations = LocationListItemViewModel.GetLocations(context);
+
             return View(locations);
         }
 
@@ -44,11 +51,10 @@ namespace StLouisSites.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            
-            List<Location> locations = context.Locations.Where(a => a.Id == id).ToList();
-
-            //var locations = context.Locations.Where(a => a.Id == id).Single();
-            ViewBag.location = locations;
+            // context is the variable name for ApplicationDbContext. Locations is the table in the database
+            // where tells the query to get the row that matches the id of the location. This line grabs the location detail information
+            // .include tells the query to grab the related reviews for this location from the locationReviews table. This line grabs each review for a location 
+            IList<Location> locations = context.Locations.Where(a => a.Id == id).Include(a => a.LocationReviews).ToList();
             return View(locations);
         }
 
