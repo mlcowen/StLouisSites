@@ -37,29 +37,31 @@ namespace StLouisSites.Controllers
             return View();
         }
 
-
-        ////[HttpPost]
-        ////public IActionResult Create(Location location)
-        ////{
-
-        ////    context.Add(location);
-        ////    context.SaveChanges();
-        ////    //If you add and don't save changes, then it won't save to the database. 
-        ////    return RedirectToAction(nameof(Index));
-        ////}
-
-  
         // copied from the locationReviewController to make viewing here easier. delete thise code
         [HttpPost]
         public IActionResult Create(int Id, LocationCreateViewModel model)
         {
            model.Persist(context);
-           return RedirectToAction(controllerName: "Location", actionName: "Index");
-
-         
+           return RedirectToAction(controllerName: "Location", actionName: "Index"); 
         }
 
+        [HttpGet]
+        public IActionResult Edit(int LocationId)
+        {
+            return View(new LocationEditViewModel(LocationId, context));
+        }
 
+        [HttpPost]
+        public IActionResult Edit(int LocationId, LocationEditViewModel location)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(new LocationEditViewModel());
+            }
+
+            location.Persist(LocationId, context);
+            return RedirectToAction(actionName: nameof(Index));
+        }
 
         [HttpGet]
         public IActionResult Details(int id)

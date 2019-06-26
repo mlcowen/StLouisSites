@@ -18,6 +18,7 @@
             <th bgcolor="#cce6ff">Hours Of Operation</th>
             <th bgcolor="#cce6ff">Average Rating</th>
             <th bgcolor="#cce6ff">Rate</th>
+            <th bgcolor="#cce6ff">Edit</th>
         </tr>
         @foreach (var location in Model)
 
@@ -36,6 +37,9 @@
             }
             <td>
                 <a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate</a>
+            </td>
+            <td>
+                <a asp-controller="Location" asp-action="Edit" asp-route-LocationId="@location.Id">Edit</a>
             </td>
 
         </tr>
