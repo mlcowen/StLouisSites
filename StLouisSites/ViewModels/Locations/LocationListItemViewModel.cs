@@ -18,6 +18,7 @@ namespace StLouisSites.ViewModels.Locations
         public string Name { get; set; }
         public string Description { get; set; }
         public string HoursOfOperation { get; set; }
+        public string Address { get; set; }
         public List<LocationReview> LocationReviews { get; set; }
         public double AverageRating { get; set; }
 
@@ -45,6 +46,7 @@ namespace StLouisSites.ViewModels.Locations
                 thisSpecificLocation.Name = location.Name;
                 thisSpecificLocation.Description = location.Description;
                 thisSpecificLocation.HoursOfOperation = location.HoursOfOperation;
+                thisSpecificLocation.Address = location.Address;
                 thisSpecificLocation.LocationReviews = location.LocationReviews;
 
                 if(location.LocationReviews.Count > 0)

@@ -11,6 +11,8 @@ namespace StLouisSites.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string HoursOfOperation { get; set; }
+        public string Address { get; set; }
+        public string Region { get; set; }
         public List<LocationReview> LocationReviews { get; set; }
     }
 }
