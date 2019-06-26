@@ -55,6 +55,8 @@ namespace StLouisSites.Controllers
         {
            model.Persist(context);
            return RedirectToAction(controllerName: "Location", actionName: "Index");
+
+         
         }
 
 
