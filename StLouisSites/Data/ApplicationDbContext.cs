@@ -11,6 +11,8 @@ namespace StLouisSites.Data
     {
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationReview> LocationReviews { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryLocation> CategoryLocations { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
