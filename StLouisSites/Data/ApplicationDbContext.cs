@@ -18,5 +18,14 @@ namespace StLouisSites.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Category>()
+                .HasIndex(m => m.Name)
+                .IsUnique();
+
+            base.OnModelCreating(builder);
+        }
     }
 }

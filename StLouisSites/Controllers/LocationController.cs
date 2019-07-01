@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StLouisSites.Data;
 using StLouisSites.Models;
+using StLouisSites.ViewModels.Categories;
 using StLouisSites.ViewModels.Locations;
 
 namespace StLouisSites.Controllers

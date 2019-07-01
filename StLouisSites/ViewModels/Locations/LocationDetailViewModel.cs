@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StLouisSites.ViewModels.Locations
+namespace StLouisSites.ViewModels.Categories
 {
     public class LocationDetailViewModel
     {

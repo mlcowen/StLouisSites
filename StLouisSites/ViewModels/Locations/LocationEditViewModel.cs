@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace StLouisSites.ViewModels.Locations
+
 {
     public class LocationEditViewModel
     {
