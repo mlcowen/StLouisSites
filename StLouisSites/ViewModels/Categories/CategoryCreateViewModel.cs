@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace StLouisSites.ViewModels.Categories
 {
@@ -13,10 +14,10 @@ namespace StLouisSites.ViewModels.Categories
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
+        
         public List<CategoryLocation> CategoryLocations { get; set; }
 
-
+        //public string errorMSG { get; set; }
 
         internal void Persist(ApplicationDbContext context)
         {
@@ -28,7 +29,18 @@ namespace StLouisSites.ViewModels.Categories
             };
 
             context.Add(category);
-            context.SaveChanges();
+
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw;
+                //we need to tell userthe item exists already
+                
+            }
+            
         }
     }
 }
