@@ -35,31 +35,49 @@ namespace StLouisSites.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
-           
-            return View();
+            LocationCreateViewModel model = new LocationCreateViewModel(context);
+            return View(model);
         }
 
         // copied from the locationReviewController to make viewing here easier. delete thise code
         [HttpPost]
-        public IActionResult Create(int Id, LocationCreateViewModel model)
+        public IActionResult Create(LocationCreateViewModel model)
+        //public IActionResult Create(int Id, LocationCreateViewModel model)
         {
-           model.Persist(context);
-           return RedirectToAction(controllerName: "Location", actionName: "Index"); 
+            if (!ModelState.IsValid)
+            {
+                model.ResetCategoryList(context);
+                return View(model);
+            }
+
+            model.Persist(context);
+            return RedirectToAction(actionName: nameof(Index));
         }
+
+
+        //{
+        //   model.Persist(context);
+        //   return RedirectToAction(controllerName: "Location", actionName: "Index"); 
+        //}
 
         [HttpGet]
         public IActionResult Edit(int LocationId)
         {
             return View(new LocationEditViewModel(LocationId, context));
         }
+        //public IActionResult Edit(int LocationId, ApplicationDbContext context)
+        //{
+        //    return View(new LocationEditViewModel(LocationId, context));
+        //}
 
         [HttpPost]
         public IActionResult Edit(int LocationId, LocationEditViewModel location)
         {
             if (!ModelState.IsValid)
             {
-                return View(new LocationEditViewModel());
+                location.ResetCategoryList(context);
+                return View(location);
+                //return View(new LocationEditViewModel());
             }
 
             location.Persist(LocationId, context);

@@ -14,7 +14,7 @@ namespace StLouisSites.Models
         public string Address { get; set; }
         public string Region { get; set; }
         public List<LocationReview> LocationReviews { get; set; }
-        public Category Category { get; set; }
-        public List<CategoryLocation> CategoryLocations { get; set; }
+        //public Category Category { get; set; }
+        public IList<CategoryLocation> CategoryLocations { get; set; }
     }
 }

@@ -12,9 +12,7 @@ namespace StLouisSites.ViewModels.Locations
 {
     public class LocationCreateViewModel
     {
-        
-        //public int Id { get; set; }
-
+      
         [Required]
         public string Name { get; set; }
         [Required]
@@ -23,48 +21,47 @@ namespace StLouisSites.ViewModels.Locations
         public string HoursOfOperation { get; set; }
         public string Address { get; set; }
 
+        [Display(Name="Select one or more categories.")]
+        public List<int> CategoryIds { get; set; }
         public List<Category> Categories { get; set; }
 
         [Required]
         public string Region { get; set; }
 
+        public LocationCreateViewModel() { }
 
-        public static List<LocationCreateViewModel> GetCategories(ApplicationDbContext context)
+        public LocationCreateViewModel(ApplicationDbContext context)
         {
-            IList<Category> categories = context.Categories.ToList();
-
-
-            //declare a new list. This will be used in our foreach loop to hold each individual instance of a category 
-            //we add data to this list at the end of our foreach loop 
-            List<Category> viewDataList = new List<Category>();
-
-            foreach ( var category in categories)
-            {
-                //every time we loop through we create a new instance of the LocationCreateViewModel. 
-                //look up recursion to get an explanation of how this works
-                Category thisSpecificCategory = new Category();
-
-                thisSpecificCategory.CategoryLocations = category;
-
-            }
+            //OrderBy(s=>s.name)tells our code to alphabetize results by the name
+            this.Categories = context.Categories.OrderBy(s =>s.Name).ToList();
         }
 
-        internal void Persist(ApplicationDbContext context)
+        public void Persist(ApplicationDbContext context)
         {
-            Location location = new Location
+            Models.Location location = new Models.Location
             {
-                //Id = this.Id,
                 Name = this.Name,
                 Description = this.Description,
                 HoursOfOperation = this.HoursOfOperation,
                 Address = this.Address,
-                Region = this.Region,
-               // Category = this.Categories // this may need to be in a separate error since it writes to a separate database.
-
+                Region = this.Region
+                //CategoryId = this.CategoryIds,
+                //Categories = this.Categories,
             };
-
-            context.Add(location);
+            context.Locations.Add(location);
+            List<CategoryLocation> categoryLocations = CreateManyToManyRelationships(location.Id);
+            location.CategoryLocations = categoryLocations;
             context.SaveChanges();
+        }
+
+        private List<CategoryLocation> CreateManyToManyRelationships(int locationId)
+        {
+            return CategoryIds.Select(catId => new CategoryLocation { LocationId = locationId, CategoryId = catId }).ToList();
+        }
+
+        internal void ResetCategoryList(ApplicationDbContext context)
+        {
+            this.Categories = context.Categories.ToList();
         }
     }
 }

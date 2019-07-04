@@ -13,6 +13,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <input type="hidden" asp-for="LocationId" />
+
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -36,20 +38,43 @@
                 <label asp-for="Region" class="control-label"></label>
                 <select asp-for="Region" class="form-control">
 
-                        <option value=""></option>
-                        <option>North St. Louis County</option>
-                        <option>South St. Louis County</option>
-                        <option>St. Charles County</option>
-                        <option>St. Louis City</option>
-                        <option>West St. Louis County</option>
+                    <option value=""></option>
+                    <option>North St. Louis County</option>
+                    <option>South St. Louis County</option>
+                    <option>St. Charles County</option>
+                    <option>St. Louis City</option>
+                    <option>West St. Louis County</option>
 
-                </select> 
+                </select>
                 <span asp-validation-for="Region" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryIds" class="control-label"></label>
+                <div class="scroll-checkbox">
+                    @foreach (var category in @Model.Categories)
+                    {
+                    <div class="form-check">
+
+                        @if (Model.CategoryIds.Contains(category.Id))
+                        {
+                            <input type="checkbox" class="form-check-input" name="CategoryIds" value="@category.Id" checked />
+                            <label class="form-check-label">@category.Name</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="form-check-input" name="CategoryIds" value="@category.Id" />
+                            <label class="form-check-label">@category.Name</label>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
-        </form>
+         </form>
     </div>
 </div>
 
