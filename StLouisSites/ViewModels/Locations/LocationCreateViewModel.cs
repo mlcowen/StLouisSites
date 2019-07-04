@@ -49,6 +49,9 @@ namespace StLouisSites.ViewModels.Locations
                 //Categories = this.Categories,
             };
             context.Locations.Add(location);
+            //context.SaveChanges();
+
+      
             List<CategoryLocation> categoryLocations = CreateManyToManyRelationships(location.Id);
             location.CategoryLocations = categoryLocations;
             context.SaveChanges();

@@ -54,7 +54,7 @@
                     @foreach (var category in Model.Categories)
                     {
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="CategoryIds" value="@Model.CategoryIds" />
+                            <input type="checkbox" class="form-check-input" name="CategoryIds" value="@category.Id" />
                             <label class="form-check-label">@category.Name</label>
                         </div>
 
