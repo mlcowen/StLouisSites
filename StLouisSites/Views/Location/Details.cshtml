@@ -1,18 +1,33 @@
-﻿@model IList<StLouisSites.Models.Location>
+﻿@*@model IList<StLouisSites.Models.Location>*@
+@model StLouisSites.ViewModels.Locations.LocationDetailViewModel
+
 
 @{
     ViewData["Title"] = "Details";
 }
 
 
-@foreach (var location in Model)
-{
-    <h1>@location.Name</h1>
-    <p><b>Hour of Operations:</b><br />
-        @location.HoursOfOperation
+
+
+    <h1>@Model.Name</h1>
+    <p>
+        <b>Hour of Operations:</b><br />
+        @Model.HoursOfOperation
     </p>
     <h2>Description</h2>
-    <p>@location.Description</p>
+    <p>@Model.Description</p>
+
+    <hr />
+
+    <h3>Categories</h3>
+
+    @*<ul>
+            @foreach (var categoryName in ViewBag.activeCategoryNames)
+            {
+                <li>@categoryName</li>
+            }
+        </ul>*@
+
 
     <hr />
 
@@ -23,7 +38,7 @@
     <div class="row">
         <div class="col-md-4">
 
-            @foreach (var review in location.LocationReviews)
+            @foreach (var review in @Model.LocationReviews)
             {
                 <dl>
                     <dt>@review.ReviewHeadline</dt>
@@ -36,7 +51,7 @@
 
         </div>
     </div>
-}
+
 
 <div>
     @*<a asp-controller="LocationReview" asp-action="Create" asp-route-LocationId="@location.Id">Rate this Location</a>

@@ -7,18 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StLouisSites.ViewModels.Categories
+namespace StLouisSites.ViewModels.Locations
 {
     public class LocationDetailViewModel
     {
-        //public int Id { get; set; }
-        //public string Name { get; set; }
-        //public string Description { get; set; }
-        //public string HoursOfOperation { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string HoursOfOperation { get; set; }
         //public string Review { get; set; }
-        //public List<LocationReview> LocationReviews { get; set; }
+        public List<LocationReview> LocationReviews { get; set; }
 
-        
+
+        public LocationDetailViewModel() { }
+
+
+        public LocationDetailViewModel(int Id, ApplicationDbContext context)
+        {
+            Location location = context.Locations.Find(Id);
+            this.Id = location.Id;
+            this.Name = location.Name;
+            this.Description = location.Description;
+            this.HoursOfOperation = location.HoursOfOperation;
+            //this.Review = location.Review;
+            this.LocationReviews = context.LocationReviews.Where(a => a.LocationId == Id).ToList();
+
+        }
 
     }
 }
